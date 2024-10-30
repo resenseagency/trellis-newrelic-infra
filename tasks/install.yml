@@ -1,0 +1,18 @@
+---
+- name: Download and run New Relic CLI installation script
+  ansible.builtin.shell: |
+    curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash
+  args:
+    creates: /usr/local/bin/newrelic # Skip if newrelic CLI is already installed
+
+- name: Run New Relic installation command
+  become: yes
+  ansible.builtin.command:
+    cmd: >
+      /usr/local/bin/newrelic install
+  environment:
+    NEW_RELIC_API_KEY: "{{ vault_newrelic_api_key }}"
+    NEW_RELIC_ACCOUNT_ID: "{{ vault_newrelic_account_id }}"
+    NEW_RELIC_REGION: "{{ vault_newrelic_region }}"
+  when:
+    - ansible_facts['os_family'] == 'Debian' or ansible_facts['os_family'] == 'RedHat'

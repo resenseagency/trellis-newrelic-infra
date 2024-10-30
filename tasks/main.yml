@@ -1,0 +1,23 @@
+---
+- name: Check if all required variables are defined
+  set_fact:
+    newrelic_infra_variables_defined: >
+      {{ vault_newrelic_api_key is defined and
+         vault_newrelic_account_id is defined and
+         vault_newrelic_region is defined }}
+
+- name: Fail if any of the required variables are not defined
+  assert:
+    that:
+      - vault_newrelic_api_key is defined
+      - vault_newrelic_account_id is defined
+      - vault_newrelic_region is defined
+    debug_msg: |
+      The following variables are not defined:
+      {% if vault_newrelic_api_key is not defined %} vault_newrelic_api_key {% endif %}
+      {% if vault_newrelic_account_id is not defined %} vault_newrelic_account_id {% endif %}
+      {% if vault_newrelic_region is not defined %} vault_newrelic_region {% endif %}
+  when: not newrelic_infra_variables_defined
+
+- include_tasks: install.yml
+  when: newrelic_infra_variables_defined
