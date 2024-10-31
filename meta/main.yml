@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Risto Kaalma
+  description: Install New Relic infrastructure monitoring on Trellis servers.
+  company: ReSense Agency
+  issue_tracker_url: https://github.com/resenseagency/trellis-newrelic-infra/issues
+  license: MIT
+  min_ansible_version: 2.10.0
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - focal
+        - bionic
+  galaxy_tags:
+    - trellis
+    - wordpress
+    - newrelic
+    - monitoring
+    - instrumentation
+    - apm
+dependencies: []

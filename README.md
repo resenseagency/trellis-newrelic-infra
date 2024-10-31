@@ -4,7 +4,7 @@ Install [New Relic infrastructure monitoring](https://docs.newrelic.com/docs/inf
 
 ## Requirements
 
-- [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html) v2.7 or later
+- [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html) v2.10.0 or later
 - Python v3.7.6 or later
 - [Trellis](https://github.com/roots/trellis) v1.3.0 or later
 - [New Relic](https://newrelic.com/) account
